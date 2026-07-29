@@ -1,0 +1,31 @@
+# === WSA 工作區完全排除（見 CLAUDE.md 第 4 節，不要移除）===
+# WSA/ 底下是 Waterball Software Academy 的獨立 repo（另一個 GitHub 帳號），
+# 與本 repo 完全分離，絕不追蹤。
+WSA/
+
+# === 憑證與敏感資料 ===
+credentials/
+*.key
+*.pem
+.env
+.env.*
+!.env.example
+
+# === 作業系統 ===
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# === 編輯器 ===
+.vscode/
+.idea/
+*.swp
+
+# === Python ===
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# === Node ===
+node_modules/
