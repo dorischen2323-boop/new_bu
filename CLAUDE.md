@@ -75,21 +75,44 @@
 
 ## 4. 與 WSA 工作區完全分離
 
-### 4.1 工作區分離
+### 4.1 工作區地圖
 
-| | 這個工作區 | WSA 工作區 |
+```
+C:\Doris\
+├── 00-NB\                                    ← 【這個工作區】個人
+│   ├── .git\                        → dorischen2323-boop/new_bu
+│   ├── 00_工作記錄\
+│   └── WSA\                         ← 課程教材，不進版控（.gitignore）
+│       └── aixbdd\.git → Waterball-Software-Academy/aixbdd
+│
+└── 00-水球球\00_AI_Marketing\WBA-Worktrees\    ← 【WBA 工作區】平行、獨立
+    ├── 01_AIxBDD\  → Waterball-Limited-Company/WBA-Growth-Hacker-Agent
+    ├── 02_B2B\        分支慣例：bdd/doris/xxx-YYYYMMDD
+    ├── 03_文案\
+    └── 04_客服\
+```
+
+| | 這個工作區（00-NB） | WBA 工作區（00-水球球） |
 |---|---|---|
-| 路徑 | `C:\Doris\00-NB\` | `C:\Doris\00-NB\WSA\`（暫時寄放，未來可搬出） |
-| Git repo | 00-NB 自己的 repo | `WSA\aixbdd` 等各自的 repo |
-| GitHub 帳號 | **dorischen2323-boop**（個人）<br>doris.chen2323@gmail.com | doris@waterballsa.tw（Waterball） |
-| 分支 | 這個 repo 自己的分支 | `bdd/` 前綴等 WSA 團隊規範 |
+| 路徑 | `C:\Doris\00-NB\` | `C:\Doris\00-水球球\00_AI_Marketing\WBA-Worktrees\` |
+| 關係 | 平行的兄弟資料夾，**無巢狀關係** | 同左 |
+| GitHub repo | `dorischen2323-boop/new_bu` | `Waterball-Limited-Company/WBA-Growth-Hacker-Agent` |
+| Push 認證帳號 | **dorischen2323-boop**（repo-local `credential.username`） | **Doris2323**（Windows 通用憑證） |
+| Commit 身分 | `Doris Chen <doris.chen2323@gmail.com>`（repo-local） | `Doris <doris@waterballsa.tw>`（**全域**） |
+| 分支慣例 | 本 repo 自訂 | `bdd/doris/xxx-YYYYMMDD` |
 
 ### 4.2 鐵則
 
-- **`WSA\` 已在 `.gitignore` 中排除**，這個 repo 永遠不會追蹤 WSA 的任何檔案。不要移除這條忽略規則。
-- **絕不**把這個工作區的變更 commit 進 WSA 的 repo，也不要在 WSA repo 開這裡的分支。
-- **絕不**把 WSA 的分支命名規範（`bdd/doris/...`）套用到這個 repo，反之亦然。
-- user-level 的 `今日工作` skill 綁定 AI x BDD 課程路徑，**在這個工作區不適用**；若被觸發，先確認使用者是否真的要跑 AI x BDD 流程。
+- **`WSA\` 已在 `.gitignore` 排除（第 4 行 `WSA/`），永遠不進版控。**
+  - 不要移除這條忽略規則
+  - 不要用 `git add -f` 強制加入 `WSA/` 底下任何檔案
+  - `WSA\aixbdd` 有自己的 `.git`（Waterball-Software-Academy 組織），要對它做版控請直接 `cd` 進去操作
+- **絕不動全域 git 設定** — 全域 `user.email = doris@waterballsa.tw` 是 WBA 在用的，本工作區一律用 repo-local 覆寫。
+- **絕不**把這個工作區的變更 commit 進 WBA 或 WSA 的 repo，反之亦然。
+- **絕不**把 WBA 的分支命名規範（`bdd/doris/...`）套用到這個 repo，反之亦然。
+- user-level 的 `今日工作` skill 綁定 WBA 的 AI x BDD 課程路徑（`08_AI x BDD 課程`），**在這個工作區不適用**；若被觸發，先確認使用者是否真的要跑 WBA 流程。
+
+> **已知副作用（可忽略）**：`WSA\chapter04`、`WSA\prompts`、`WSA\specs` 沒有自己的 `.git`，在那些資料夾執行 git 指令會往上解析到 00-NB 的 repo。因為 `WSA/` 被忽略，檔案不會被誤 commit，只是 `git status` 顯示的是 00-NB 的狀態。若覺得混淆，可對那三個資料夾各自 `git init`（純本機、不設 remote）。
 
 ### 4.3 Git 身分（已設為 repo-local，不影響全域）
 
