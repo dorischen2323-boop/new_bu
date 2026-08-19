@@ -1,0 +1,221 @@
+@import "tailwindcss";
+
+/* ============================================================
+   灰粉柔紗 × 深潮藍 — Design Tokens
+   規範正本：C:\Doris\00-NB\個人Website\01_視覺設計規範.md
+   ============================================================ */
+:root {
+  /* 底層 */
+  --bg:            #FAF7F8;
+  --bg-alt:        #F4F0F2;
+  --surface:       #FFFFFF;
+
+  /* 文字 */
+  --ink:           #26282C;
+  --ink-2:         #6E7278;
+  --ink-3:         #9A9DA3;
+
+  /* 線 */
+  --line:          #E2DEE0;
+  --line-strong:   #CFC9CC;
+
+  /* 雙主色：粉講行銷、藍講技術 */
+  --accent:        #8F4A53;
+  --accent-hover:  #7A3D45;
+  --accent-ink:    #FFFFFF;
+  --tide:          #1B6C88;
+  --tide-hover:    #155A72;
+  --tide-ink:      #FFFFFF;
+
+  /* 靈感原色（只做漸層與底染，永不承載文字） */
+  --peach:         #F2C9CB;
+  --slate:         #B6BAC0;
+  --tide-light:    #96D0D2;
+  --peach-wash:    rgba(242, 201, 203, .28);
+  --slate-wash:    rgba(182, 186, 192, .22);
+  --tide-wash:     rgba(150, 208, 210, .26);
+
+  /* 柔紗漸層 */
+  --veil:          linear-gradient(135deg, #F2C9CB 0%, #DFD8DE 44%, #9FB8C4 100%);
+  --veil-flat:     linear-gradient(100deg, #F2C9CB 0%, #DFD8DE 50%, #9FB8C4 100%);
+  --veil-rose:     linear-gradient(140deg, #F2C9CB 0%, #DED5DA 60%, #B6BAC0 100%);
+  --veil-tide:     linear-gradient(140deg, #96D0D2 0%, #C3CFD8 55%, #1B6C88 100%);
+
+  --shadow:        0 1px 2px rgba(38,40,44,.04), 0 8px 24px -12px rgba(38,40,44,.10);
+  --shadow-lift:   0 2px 4px rgba(38,40,44,.05), 0 18px 40px -18px rgba(38,40,44,.22);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:          #1B1C1F;
+    --bg-alt:      #232529;
+    --surface:     #24262A;
+    --ink:         #EDEAEB;
+    --ink-2:       #A0A3A8;
+    --ink-3:       #7A7D83;
+    --line:        #33363B;
+    --line-strong: #44484E;
+    --accent:      #E8A0A8;
+    --accent-hover:#F2B8BE;
+    --accent-ink:  #1B1C1F;
+    --tide:        #7DC4DC;
+    --tide-hover:  #9BD5E8;
+    --tide-ink:    #1B1C1F;
+    --slate:       #7E848C;
+    --peach-wash:  rgba(242, 201, 203, .12);
+    --slate-wash:  rgba(182, 186, 192, .10);
+    --tide-wash:   rgba(150, 208, 210, .12);
+    --veil:        linear-gradient(135deg, #5C4247 0%, #393B41 46%, #24404B 100%);
+    --veil-flat:   linear-gradient(100deg, #5C4247 0%, #393B41 50%, #24404B 100%);
+    --veil-rose:   linear-gradient(140deg, #6B4A50 0%, #43424A 60%, #35383E 100%);
+    --veil-tide:   linear-gradient(140deg, #2F5F6B 0%, #2B3B45 55%, #1B4657 100%);
+    --shadow:      0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+    --shadow-lift: 0 2px 4px rgba(0,0,0,.35), 0 18px 40px -18px rgba(0,0,0,.75);
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg:          #1B1C1F;
+  --bg-alt:      #232529;
+  --surface:     #24262A;
+  --ink:         #EDEAEB;
+  --ink-2:       #A0A3A8;
+  --ink-3:       #7A7D83;
+  --line:        #33363B;
+  --line-strong: #44484E;
+  --accent:      #E8A0A8;
+  --accent-hover:#F2B8BE;
+  --accent-ink:  #1B1C1F;
+  --tide:        #7DC4DC;
+  --tide-hover:  #9BD5E8;
+  --tide-ink:    #1B1C1F;
+  --slate:       #7E848C;
+  --peach-wash:  rgba(242, 201, 203, .12);
+  --slate-wash:  rgba(182, 186, 192, .10);
+  --tide-wash:   rgba(150, 208, 210, .12);
+  --veil:        linear-gradient(135deg, #5C4247 0%, #393B41 46%, #24404B 100%);
+  --veil-flat:   linear-gradient(100deg, #5C4247 0%, #393B41 50%, #24404B 100%);
+  --veil-rose:   linear-gradient(140deg, #6B4A50 0%, #43424A 60%, #35383E 100%);
+  --veil-tide:   linear-gradient(140deg, #2F5F6B 0%, #2B3B45 55%, #1B4657 100%);
+  --shadow:      0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+  --shadow-lift: 0 2px 4px rgba(0,0,0,.35), 0 18px 40px -18px rgba(0,0,0,.75);
+}
+
+/* ============================================================
+   把 token 接進 Tailwind（bg-bg / text-ink / text-accent …）
+   ============================================================ */
+@theme inline {
+  --color-bg:          var(--bg);
+  --color-bg-alt:      var(--bg-alt);
+  --color-surface:     var(--surface);
+  --color-ink:         var(--ink);
+  --color-ink-2:       var(--ink-2);
+  --color-ink-3:       var(--ink-3);
+  --color-line:        var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent:      var(--accent);
+  --color-accent-hover:var(--accent-hover);
+  --color-accent-ink:  var(--accent-ink);
+  --color-tide:        var(--tide);
+  --color-tide-hover:  var(--tide-hover);
+  --color-tide-ink:    var(--tide-ink);
+  --color-peach:       var(--peach);
+  --color-slate-veil:  var(--slate);
+  --color-tide-light:  var(--tide-light);
+
+  --font-serif: "Noto Serif TC", "Songti TC", serif;
+  --font-sans:  "Noto Sans TC", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:  "JetBrains Mono", ui-monospace, "Cascadia Code", monospace;
+
+  --shadow-card:  var(--shadow);
+  --shadow-lift:  var(--shadow-lift);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  line-height: 1.75;
+  letter-spacing: .01em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection { background: var(--peach); color: #26282C; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ============================================================
+   Utilities
+   ============================================================ */
+
+/* 顆粒噪點 —— 灰粉柔紗的靈魂 */
+.grain { position: relative; }
+.grain::after {
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+  opacity: .07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.veil      { background: var(--veil); }
+.veil-flat { background: var(--veil-flat); }
+.veil-rose { background: var(--veil-rose); }
+.veil-tide { background: var(--veil-tide); }
+
+/* Hero：柔紗漸層底部往頁面底色淡出，文字才讀得清楚 */
+.veil-fade {
+  background:
+    linear-gradient(180deg, transparent 55%, var(--bg) 100%),
+    var(--veil);
+}
+
+.wash-rose { background: var(--peach-wash); }
+.wash-tide { background: var(--tide-wash); }
+.wash-slate{ background: var(--slate-wash); }
+
+/* 等寬數字 */
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* 內文欄寬：一行 30–36 個中文字 */
+.measure { max-width: 42rem; }
+
+/* 進場動畫 */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .32s ease-out, transform .32s ease-out;
+  will-change: opacity, transform;
+}
+.reveal.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* 列印（線上履歷用） */
+@media print {
+  :root { --bg: #fff; --bg-alt: #fff; --surface: #fff; --ink: #000; --ink-2: #333; --ink-3: #666; --line: #ccc; }
+  .no-print { display: none !important; }
+  .grain::after, .veil, .veil-fade, .veil-flat { background: none !important; }
+  .veil-fade::after { display: none; }
+  a { color: #000 !important; }
+  body { font-size: 11pt; line-height: 1.6; }
+}

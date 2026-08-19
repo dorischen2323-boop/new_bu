@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "doris-works",
+  "compatibility_date": "2026-08-19",
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page"
+  }
+  // 網域綁定（doris.works 註冊並加入 Cloudflare 後再打開）：
+  // "routes": [
+  //   { "pattern": "doris.works", "custom_domain": true },
+  //   { "pattern": "www.doris.works", "custom_domain": true }
+  // ]
+}

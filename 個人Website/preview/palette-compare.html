@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>配色方案對照 — Doris Chen 個人網站</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --serif:"Noto Serif TC",serif;
+  --sans:"Noto Sans TC",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);background:#F2F2F3;color:#1D1E20;line-height:1.7;-webkit-font-smoothing:antialiased}
+.page{max-width:1180px;margin:0 auto;padding:0 22px}
+
+/* 顆粒 */
+.grain::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.07;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ===== 頁首 ===== */
+.masthead{background:#1D1E20;color:#F2F2F3;padding:62px 0 54px}
+.masthead h1{font-family:var(--serif);font-size:clamp(1.8rem,4vw,2.7rem);margin:0 0 14px;letter-spacing:-.02em}
+.masthead p{color:#9A9CA0;max-width:640px;margin:0;font-size:15px}
+.masthead .tag{font-family:var(--mono);font-size:11px;letter-spacing:.22em;color:#7C7E82;margin-bottom:18px}
+
+/* ===== 方案外框 ===== */
+.opt{margin:0;border-top:1px solid #DDD}
+.opt-head{padding:44px 0 26px}
+.opt-no{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:#8A8C90}
+.opt-head h2{font-family:var(--serif);font-size:1.85rem;margin:8px 0 8px;letter-spacing:-.02em}
+.opt-head .verdict{font-size:14px;max-width:660px;color:#55575B;margin:0}
+.badge{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;padding:4px 10px;border-radius:999px;margin-left:10px;vertical-align:3px}
+.b-rec{background:#1B6C88;color:#fff}
+.b-ok{background:#8F4A53;color:#fff}
+.b-no{background:#C9C6C7;color:#4A4C50}
+
+/* 色票條 */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}
+.chip{border-radius:8px;overflow:hidden;width:126px;border:1px solid rgba(0,0,0,.08)}
+.chip .c{height:52px}
+.chip .t{padding:7px 9px;background:#fff;font-family:var(--mono);font-size:10px;letter-spacing:.03em;color:#55575B}
+.chip .t b{display:block;font-family:var(--sans);font-size:11px;font-weight:500;color:#1D1E20;letter-spacing:0;margin-bottom:1px}
+.chip.dead .c{position:relative}
+.chip.dead .c::after{content:"✕";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(0,0,0,.35);font-size:20px}
+
+/* ===== DEMO 區（每個方案渲染同一份內容）===== */
+.demo{border-radius:16px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.05),0 24px 60px -30px rgba(0,0,0,.3);margin-bottom:56px;background:var(--d-bg)}
+.demo .hero{position:relative;padding:54px 40px 46px;overflow:hidden;background:var(--d-hero)}
+.demo .eyebrow{position:relative;z-index:2;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--d-ink2);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.demo .eyebrow::before{content:"";width:24px;height:1px;background:var(--d-acc)}
+.demo .hero h3{position:relative;z-index:2;font-family:var(--serif);font-weight:700;font-size:clamp(1.5rem,3.2vw,2.15rem);line-height:1.22;letter-spacing:-.02em;color:var(--d-ink);margin:0 0 14px;max-width:16em}
+.demo .hero p{position:relative;z-index:2;color:var(--d-ink2);font-size:14.5px;max-width:32em;margin:0 0 26px}
+.demo .btns{position:relative;z-index:2;display:flex;gap:11px;flex-wrap:wrap}
+.demo .btn{font-size:13.5px;font-weight:500;padding:11px 22px;border-radius:999px;border:1px solid transparent;cursor:pointer;text-decoration:none;display:inline-block}
+.demo .btn-p{background:var(--d-acc);color:var(--d-acc-ink)}
+.demo .btn-s{border-color:var(--d-line2);color:var(--d-ink);background:transparent}
+
+.demo .body{padding:36px 40px 40px}
+.demo .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--d-ink3);margin-bottom:14px}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:34px}
+.kpi{background:var(--d-wash);border:1px solid var(--d-line);border-radius:12px;padding:20px 18px}
+.kpi .v{font-family:var(--mono);font-weight:700;font-size:1.75rem;color:var(--d-acc);font-variant-numeric:tabular-nums;line-height:1.05;letter-spacing:-.02em}
+.kpi .v small{font-size:.5em;font-weight:500}
+.kpi .l{font-size:12.5px;color:var(--d-ink2);margin-top:9px}
+.kpi.alt{background:var(--d-wash2)}
+.kpi.alt .v{color:var(--d-acc2)}
+
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:700px){.cards{grid-template-columns:1fr}}
+.card{background:var(--d-surface);border:1px solid var(--d-line);border-radius:12px;overflow:hidden}
+.card .th{position:relative;height:96px;display:flex;align-items:flex-end;padding:14px;overflow:hidden}
+.card .th.a{background:var(--d-grad)}
+.card .th.b{background:var(--d-grad2)}
+.card .th span{position:relative;z-index:2;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.85);color:#26282C;padding:4px 9px;border-radius:999px}
+.card .cb{padding:16px 18px 18px}
+.card h4{font-family:var(--serif);font-size:1rem;margin:0 0 7px;color:var(--d-ink)}
+.card p{font-size:12.5px;color:var(--d-ink2);margin:0 0 13px;line-height:1.65}
+.card .r{padding-top:11px;border-top:1px solid var(--d-line);display:flex;align-items:baseline;gap:7px}
+.card .r b{font-family:var(--mono);font-size:1.1rem;color:var(--d-acc);font-variant-numeric:tabular-nums}
+.card .r.tech b{color:var(--d-acc2)}
+.card .r i{font-style:normal;font-size:11.5px;color:var(--d-ink3)}
+
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px}
+.pill{font-size:11.5px;padding:5px 12px;border-radius:999px;background:var(--d-wash);color:var(--d-ink2);border:1px solid var(--d-line)}
+.pill.tech{background:var(--d-wash2);color:var(--d-acc2);border-color:var(--d-line)}
+
+/* 分析框 */
+.analysis{background:#fff;border:1px solid #E2E2E4;border-radius:12px;padding:22px 26px;margin-bottom:56px;font-size:14px;max-width:820px}
+.analysis h5{font-family:var(--sans);font-size:13px;font-weight:700;margin:0 0 10px;letter-spacing:.02em}
+.analysis ul{margin:0;padding-left:19px;color:#55575B}
+.analysis li{margin-bottom:6px}
+.analysis .good{color:#1B6C88;font-weight:500}
+.analysis .bad{color:#A8434B;font-weight:500}
+code{font-family:var(--mono);font-size:.88em;background:#F0F0F1;padding:1px 5px;border-radius:4px}
+
+footer{background:#1D1E20;color:#7C7E82;padding:36px 0;font-size:12.5px;font-family:var(--mono);letter-spacing:.04em}
+
+/* ============================================================
+   方案 A — 灰粉柔紗（現行）
+   ============================================================ */
+.pal-a{
+  --d-bg:#FAF7F8; --d-surface:#FFFFFF;
+  --d-ink:#26282C; --d-ink2:#6E7278; --d-ink3:#9A9DA3;
+  --d-line:#E2DEE0; --d-line2:#CFC9CC;
+  --d-acc:#8F4A53; --d-acc-ink:#FFFFFF;
+  --d-acc2:#8F4A53;
+  --d-wash:rgba(242,201,203,.28);
+  --d-wash2:rgba(182,186,192,.24);
+  --d-hero:linear-gradient(180deg,transparent 58%,#FAF7F8 100%),linear-gradient(135deg,#F2C9CB 0%,#E8DDE0 46%,#B6BAC0 100%);
+  --d-grad:linear-gradient(140deg,#F2C9CB 0%,#DED5DA 60%,#B6BAC0 100%);
+  --d-grad2:linear-gradient(140deg,#B6BAC0 0%,#DCD6DA 55%,#F2C9CB 100%);
+}
+/* ============================================================
+   方案 B — 春日餐桌
+   ============================================================ */
+.pal-b{
+  --d-bg:#FDF8F5; --d-surface:#FFFFFF;
+  --d-ink:#33292A; --d-ink2:#736663; --d-ink3:#A0928D;
+  --d-line:#E8DDD6; --d-line2:#D4C4BA;
+  --d-acc:#9A5252; --d-acc-ink:#FFFFFF;
+  --d-acc2:#6E8574;
+  --d-wash:rgba(243,155,179,.22);
+  --d-wash2:rgba(138,166,143,.20);
+  --d-hero:linear-gradient(180deg,transparent 58%,#FDF8F5 100%),linear-gradient(135deg,#F39BB3 0%,#E3C9B8 48%,#8AA68F 100%);
+  --d-grad:linear-gradient(140deg,#F39BB3 0%,#DFC3B4 60%,#BF9177 100%);
+  --d-grad2:linear-gradient(140deg,#8AA68F 0%,#C9CBA3 55%,#D4D973 100%);
+}
+/* ============================================================
+   方案 C — 泳池派對
+   ============================================================ */
+.pal-c{
+  --d-bg:#FDF9FA; --d-surface:#FFFFFF;
+  --d-ink:#17323D; --d-ink2:#5B7480; --d-ink3:#8CA3AD;
+  --d-line:#DCE8EC; --d-line2:#B9D2D9;
+  --d-acc:#1B6C88; --d-acc-ink:#FFFFFF;
+  --d-acc2:#C4157C;
+  --d-wash:rgba(150,208,210,.28);
+  --d-wash2:rgba(253,165,204,.26);
+  --d-hero:linear-gradient(180deg,transparent 56%,#FDF9FA 100%),linear-gradient(135deg,#FDA5CC 0%,#96D0D2 52%,#51ACC5 100%);
+  --d-grad:linear-gradient(140deg,#96D0D2 0%,#B9DCE0 55%,#51ACC5 100%);
+  --d-grad2:linear-gradient(140deg,#FDA5CC 0%,#E5C0D6 55%,#96D0D2 100%);
+}
+/* ============================================================
+   方案 D — 灰粉柔紗 × 深潮藍（建議）
+   ============================================================ */
+.pal-d{
+  --d-bg:#FAF7F8; --d-surface:#FFFFFF;
+  --d-ink:#26282C; --d-ink2:#6E7278; --d-ink3:#9A9DA3;
+  --d-line:#E2DEE0; --d-line2:#CFC9CC;
+  --d-acc:#8F4A53; --d-acc-ink:#FFFFFF;
+  --d-acc2:#1B6C88;
+  --d-wash:rgba(242,201,203,.28);
+  --d-wash2:rgba(150,208,210,.26);
+  --d-hero:linear-gradient(180deg,transparent 58%,#FAF7F8 100%),linear-gradient(135deg,#F2C9CB 0%,#DFD8DE 44%,#9FB8C4 100%);
+  --d-grad:linear-gradient(140deg,#F2C9CB 0%,#DED5DA 60%,#B6BAC0 100%);
+  --d-grad2:linear-gradient(140deg,#96D0D2 0%,#C3CFD8 55%,#1B6C88 100%);
+}
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="page">
+    <div class="tag">PALETTE COMPARISON · 2026.08.19</div>
+    <h1>四個配色方案，同一份內容</h1>
+    <p>同樣的 Hero、KPI 卡、案例卡渲染四次。差別只有顏色，所以你看到的差異就是純粹的配色差異。往下捲，最後一個是我的建議。</p>
+  </div>
+</div>
+
+<!-- ================= A ================= -->
+<div class="opt">
+  <div class="page">
+    <div class="opt-head">
+      <div class="opt-no">方案 A</div>
+      <h2>灰粉柔紗（目前版本）<span class="badge b-ok">已選定</span></h2>
+      <p class="verdict">你原本給的參考圖。溫柔、有紙感、成熟。缺點：只有一個主色，圖表畫不出多序列，也講不完「行銷 ＋ 技術」兩個身分。</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="c" style="background:#F2C9CB"></div><div class="t"><b>蜜桃粉</b>#F2C9CB</div></div>
+      <div class="chip"><div class="c" style="background:#B6BAC0"></div><div class="t"><b>淺炭灰</b>#B6BAC0</div></div>
+      <div class="chip"><div class="c" style="background:#8F4A53"></div><div class="t"><b>深玫瑰 ★</b>#8F4A53</div></div>
+      <div class="chip"><div class="c" style="background:#26282C"></div><div class="t"><b>墨炭灰</b>#26282C</div></div>
+      <div class="chip"><div class="c" style="background:#FAF7F8;border-bottom:1px solid #E2DEE0"></div><div class="t"><b>粉灰白</b>#FAF7F8</div></div>
+    </div>
+  </div>
+  <div class="page">
+    <div class="demo pal-a">
+      <div class="hero grain">
+        <div class="eyebrow">品牌成長顧問 ／ AI × 行銷</div>
+        <h3>把投放做成系統，<br>而不是每個月重來一次。</h3>
+        <p>十五年數位行銷，走過代理商、品牌方、媒體三種視角。現在我多做一件事 —— 把行銷流程寫成真的會跑的自動化系統。</p>
+        <div class="btns"><a class="btn btn-p" href="#">聊聊合作 →</a><a class="btn btn-s" href="#">看我做過什麼</a></div>
+      </div>
+      <div class="body">
+        <div class="lbl">成果數據</div>
+        <div class="kpis">
+          <div class="kpi"><div class="v">10,000<small>+</small></div><div class="l">單案潛在名單</div></div>
+          <div class="kpi"><div class="v">35<small>%</small></div><div class="l">電商業績月成長</div></div>
+          <div class="kpi alt"><div class="v">12</div><div class="l">自建儀表板頁面</div></div>
+          <div class="kpi alt"><div class="v">15<small>+ 年</small></div><div class="l">數位行銷資歷</div></div>
+        </div>
+        <div class="lbl">精選案例</div>
+        <div class="cards">
+          <div class="card"><div class="th a grain"><span>潛客名單</span></div><div class="cb"><h4>某汽車品牌｜名單成本優化</h4><p>重構受眾分層與素材輪替節奏，把獲客成本壓進目標線內。</p><div class="r"><b>10,000+</b><i>名單 · CPA &lt; 3,000</i></div></div></div>
+          <div class="card"><div class="th b grain"><span>AI 工作流</span></div><div class="cb"><h4>行銷數據自動化後台</h4><p>把散在各處的數據收攏成一頁儀表板，每日自動更新。</p><div class="r tech"><b>12</b><i>頁面 · 每日自動化</i></div></div></div>
+        </div>
+        <div class="pills"><span class="pill">品牌成長策略</span><span class="pill">成效型廣告</span><span class="pill">電商營運</span><span class="pill tech">AI 工作流開發</span><span class="pill tech">數據自動化</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= B ================= -->
+<div class="opt">
+  <div class="page">
+    <div class="opt-head">
+      <div class="opt-no">方案 B</div>
+      <h2>春日餐桌<span class="badge b-no">不建議</span></h2>
+      <p class="verdict">圖左那組。已把 Bubinga 壓深成 <code>#9A5252</code> 才有辦法當主色。整體很好看，但方向是「生活風格」不是「B2B 顧問」。</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="c" style="background:#F39BB3"></div><div class="t"><b>Tulip Rose</b>#F39BB3</div></div>
+      <div class="chip dead"><div class="c" style="background:#A7F3F3"></div><div class="t"><b>Turquoise</b>#A7F3F3</div></div>
+      <div class="chip"><div class="c" style="background:#8AA68F"></div><div class="t"><b>Sage</b>#8AA68F</div></div>
+      <div class="chip dead"><div class="c" style="background:#D4D973"></div><div class="t"><b>Green Tea</b>#D4D973</div></div>
+      <div class="chip"><div class="c" style="background:#BF9177"></div><div class="t"><b>Toasted Nut</b>#BF9177</div></div>
+      <div class="chip"><div class="c" style="background:#B26565"></div><div class="t"><b>Bubinga</b>#B26565</div></div>
+      <div class="chip"><div class="c" style="background:#9A5252"></div><div class="t"><b>↑ 壓深後 ★</b>#9A5252</div></div>
+    </div>
+  </div>
+  <div class="page">
+    <div class="demo pal-b">
+      <div class="hero grain">
+        <div class="eyebrow">品牌成長顧問 ／ AI × 行銷</div>
+        <h3>把投放做成系統，<br>而不是每個月重來一次。</h3>
+        <p>十五年數位行銷，走過代理商、品牌方、媒體三種視角。現在我多做一件事 —— 把行銷流程寫成真的會跑的自動化系統。</p>
+        <div class="btns"><a class="btn btn-p" href="#">聊聊合作 →</a><a class="btn btn-s" href="#">看我做過什麼</a></div>
+      </div>
+      <div class="body">
+        <div class="lbl">成果數據</div>
+        <div class="kpis">
+          <div class="kpi"><div class="v">10,000<small>+</small></div><div class="l">單案潛在名單</div></div>
+          <div class="kpi"><div class="v">35<small>%</small></div><div class="l">電商業績月成長</div></div>
+          <div class="kpi alt"><div class="v">12</div><div class="l">自建儀表板頁面</div></div>
+          <div class="kpi alt"><div class="v">15<small>+ 年</small></div><div class="l">數位行銷資歷</div></div>
+        </div>
+        <div class="lbl">精選案例</div>
+        <div class="cards">
+          <div class="card"><div class="th a grain"><span>潛客名單</span></div><div class="cb"><h4>某汽車品牌｜名單成本優化</h4><p>重構受眾分層與素材輪替節奏，把獲客成本壓進目標線內。</p><div class="r"><b>10,000+</b><i>名單 · CPA &lt; 3,000</i></div></div></div>
+          <div class="card"><div class="th b grain"><span>AI 工作流</span></div><div class="cb"><h4>行銷數據自動化後台</h4><p>把散在各處的數據收攏成一頁儀表板，每日自動更新。</p><div class="r tech"><b>12</b><i>頁面 · 每日自動化</i></div></div></div>
+        </div>
+        <div class="pills"><span class="pill">品牌成長策略</span><span class="pill">成效型廣告</span><span class="pill">電商營運</span><span class="pill tech">AI 工作流開發</span><span class="pill tech">數據自動化</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="page">
+    <div class="analysis">
+      <h5>為什麼不建議</h5>
+      <ul>
+        <li><span class="bad">兩個綠</span> — Sage <code>#8AA68F</code> 與 Green Tea <code>#D4D973</code>，你明確說過不喜歡綠色</li>
+        <li><span class="bad">Green Tea <code>#D4D973</code> 幾乎不能用</span> — 黃綠在介面上很難安排，只能當極小點綴</li>
+        <li><span class="bad">Turquoise <code>#A7F3F3</code> 太亮</span> — 對比 1.2:1，任何文字都讀不到</li>
+        <li><span class="bad">方向錯位</span> — 這是花藝／餐飲／選物店的配色。品牌主看到會覺得「這是做手作的」，不是「這人能幫我壓 CPA」</li>
+        <li><span class="good">唯一可惜的是 Bubinga <code>#B26565</code></span> — 那個玫瑰紅棕跟你現在的深玫瑰是親戚，方向其實一致</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ================= C ================= -->
+<div class="opt">
+  <div class="page">
+    <div class="opt-head">
+      <div class="opt-no">方案 C</div>
+      <h2>泳池派對<span class="badge b-no">整組不建議</span></h2>
+      <p class="verdict">圖右那組。Barbie Pink 已壓深成 <code>#C4157C</code> 才勉強能當文字。年輕、有活力，但太甜 —— 這是飲料、美妝、健身房的配色。<b>不過裡面藏了一個寶。</b></p>
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="c" style="background:#227E9D"></div><div class="t"><b>Pool Bottom ⭐</b>#227E9D</div></div>
+      <div class="chip"><div class="c" style="background:#51ACC5"></div><div class="t"><b>Dragonfly</b>#51ACC5</div></div>
+      <div class="chip"><div class="c" style="background:#96D0D2"></div><div class="t"><b>Lifeboat Blue</b>#96D0D2</div></div>
+      <div class="chip"><div class="c" style="background:#FDF9FA;border-bottom:1px solid #E2DEE0"></div><div class="t"><b>Abalone</b>#FDF9FA</div></div>
+      <div class="chip"><div class="c" style="background:#FDA5CC"></div><div class="t"><b>Cotton Candy</b>#FDA5CC</div></div>
+      <div class="chip dead"><div class="c" style="background:#FD50A4"></div><div class="t"><b>Barbie Pink</b>#FD50A4</div></div>
+      <div class="chip"><div class="c" style="background:#C4157C"></div><div class="t"><b>↑ 壓深後</b>#C4157C</div></div>
+    </div>
+  </div>
+  <div class="page">
+    <div class="demo pal-c">
+      <div class="hero grain">
+        <div class="eyebrow">品牌成長顧問 ／ AI × 行銷</div>
+        <h3>把投放做成系統，<br>而不是每個月重來一次。</h3>
+        <p>十五年數位行銷，走過代理商、品牌方、媒體三種視角。現在我多做一件事 —— 把行銷流程寫成真的會跑的自動化系統。</p>
+        <div class="btns"><a class="btn btn-p" href="#">聊聊合作 →</a><a class="btn btn-s" href="#">看我做過什麼</a></div>
+      </div>
+      <div class="body">
+        <div class="lbl">成果數據</div>
+        <div class="kpis">
+          <div class="kpi"><div class="v">10,000<small>+</small></div><div class="l">單案潛在名單</div></div>
+          <div class="kpi"><div class="v">35<small>%</small></div><div class="l">電商業績月成長</div></div>
+          <div class="kpi alt"><div class="v">12</div><div class="l">自建儀表板頁面</div></div>
+          <div class="kpi alt"><div class="v">15<small>+ 年</small></div><div class="l">數位行銷資歷</div></div>
+        </div>
+        <div class="lbl">精選案例</div>
+        <div class="cards">
+          <div class="card"><div class="th a grain"><span>潛客名單</span></div><div class="cb"><h4>某汽車品牌｜名單成本優化</h4><p>重構受眾分層與素材輪替節奏，把獲客成本壓進目標線內。</p><div class="r"><b>10,000+</b><i>名單 · CPA &lt; 3,000</i></div></div></div>
+          <div class="card"><div class="th b grain"><span>AI 工作流</span></div><div class="cb"><h4>行銷數據自動化後台</h4><p>把散在各處的數據收攏成一頁儀表板，每日自動更新。</p><div class="r tech"><b>12</b><i>頁面 · 每日自動化</i></div></div></div>
+        </div>
+        <div class="pills"><span class="pill">品牌成長策略</span><span class="pill">成效型廣告</span><span class="pill">電商營運</span><span class="pill tech">AI 工作流開發</span><span class="pill tech">數據自動化</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="page">
+    <div class="analysis">
+      <h5>整組不行，但有兩個可以偷</h5>
+      <ul>
+        <li><span class="bad">Barbie Pink <code>#FD50A4</code> 對比 2.9:1</span> — 當文字不合格，而且太甜，會讓網站看起來像美妝或飲料品牌</li>
+        <li><span class="bad">三個藍太接近</span> — <code>#227E9D</code> / <code>#51ACC5</code> / <code>#96D0D2</code> 是同一色相的三個明度，資訊層級撐不開</li>
+        <li><span class="good">⭐ Pool Bottom <code>#227E9D</code> 值得偷</span> — 深潮藍是你目前配色缺的第二主色（見方案 D）</li>
+        <li><span class="good">Abalone <code>#FDF9FA</code> 是很好的底色</span> — 幾乎跟你現在的 <code>#FAF7F8</code> 一樣，方向是對的</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ================= D ================= -->
+<div class="opt" style="border-top:3px solid #1B6C88">
+  <div class="page">
+    <div class="opt-head">
+      <div class="opt-no">方案 D</div>
+      <h2>灰粉柔紗 × 深潮藍<span class="badge b-rec">我的建議</span></h2>
+      <p class="verdict">保留你喜歡的灰粉柔紗，只從泳池派對偷一個 <code>#227E9D</code>（壓深成 <code>#1B6C88</code>）當第二主色。<b>粉色講行銷、藍色講技術</b> —— 顏色本身就在幫你分工。</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><div class="c" style="background:#F2C9CB"></div><div class="t"><b>蜜桃粉</b>#F2C9CB</div></div>
+      <div class="chip"><div class="c" style="background:#B6BAC0"></div><div class="t"><b>淺炭灰</b>#B6BAC0</div></div>
+      <div class="chip"><div class="c" style="background:#8F4A53"></div><div class="t"><b>深玫瑰 ★ 行銷</b>#8F4A53</div></div>
+      <div class="chip"><div class="c" style="background:#1B6C88"></div><div class="t"><b>深潮藍 ★ 技術</b>#1B6C88</div></div>
+      <div class="chip"><div class="c" style="background:#96D0D2"></div><div class="t"><b>淺潮藍（底染）</b>#96D0D2</div></div>
+      <div class="chip"><div class="c" style="background:#26282C"></div><div class="t"><b>墨炭灰</b>#26282C</div></div>
+      <div class="chip"><div class="c" style="background:#FAF7F8;border-bottom:1px solid #E2DEE0"></div><div class="t"><b>粉灰白</b>#FAF7F8</div></div>
+    </div>
+  </div>
+  <div class="page">
+    <div class="demo pal-d">
+      <div class="hero grain">
+        <div class="eyebrow">品牌成長顧問 ／ AI × 行銷</div>
+        <h3>把投放做成系統，<br>而不是每個月重來一次。</h3>
+        <p>十五年數位行銷，走過代理商、品牌方、媒體三種視角。現在我多做一件事 —— 把行銷流程寫成真的會跑的自動化系統。</p>
+        <div class="btns"><a class="btn btn-p" href="#">聊聊合作 →</a><a class="btn btn-s" href="#">看我做過什麼</a></div>
+      </div>
+      <div class="body">
+        <div class="lbl">成果數據 — 粉色講行銷，藍色講技術</div>
+        <div class="kpis">
+          <div class="kpi"><div class="v">10,000<small>+</small></div><div class="l">單案潛在名單</div></div>
+          <div class="kpi"><div class="v">35<small>%</small></div><div class="l">電商業績月成長</div></div>
+          <div class="kpi alt"><div class="v">12</div><div class="l">自建儀表板頁面</div></div>
+          <div class="kpi alt"><div class="v">15<small>+ 年</small></div><div class="l">數位行銷資歷</div></div>
+        </div>
+        <div class="lbl">精選案例</div>
+        <div class="cards">
+          <div class="card"><div class="th a grain"><span>潛客名單</span></div><div class="cb"><h4>某汽車品牌｜名單成本優化</h4><p>重構受眾分層與素材輪替節奏，把獲客成本壓進目標線內。</p><div class="r"><b>10,000+</b><i>名單 · CPA &lt; 3,000</i></div></div></div>
+          <div class="card"><div class="th b grain"><span>AI 工作流</span></div><div class="cb"><h4>行銷數據自動化後台</h4><p>把散在各處的數據收攏成一頁儀表板，每日自動更新。</p><div class="r tech"><b>12</b><i>頁面 · 每日自動化</i></div></div></div>
+        </div>
+        <div class="pills"><span class="pill">品牌成長策略</span><span class="pill">成效型廣告</span><span class="pill">電商營運</span><span class="pill tech">AI 工作流開發</span><span class="pill tech">數據自動化</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="page">
+    <div class="analysis" style="border-color:#1B6C88;border-width:1.5px">
+      <h5>為什麼加這一色</h5>
+      <ul>
+        <li><span class="good">補上你的雙身分</span> — 一個顏色講不完「行銷操盤手 ＋ 會寫系統的人」。粉 = 成果／人／業績，藍 = 系統／數據／AI</li>
+        <li><span class="good">圖表終於畫得出來</span> — 多序列折線、堆疊長條需要至少兩個可辨識主色</li>
+        <li><span class="good">標籤能分類</span> — 行銷技能用粉、技術技能用藍，掃一眼就知道你會什麼</li>
+        <li><span class="good">粉 × 藍是經典專業配對</span> — 藍色天生帶「可信、技術、數據」語意，剛好補上你最想被看見的一面</li>
+        <li><span class="good">對比全綠燈</span> — 原色 <code>#227E9D</code> 對比 4.43:1 小字會踩線；壓深成 <code>#1B6C88</code> 後 5.67:1，白字 5.92:1</li>
+        <li>Hero 漸層右端由 <code>#B6BAC0</code> 改成帶一點藍的 <code>#9FB8C4</code>，讓藍色在首屏就先出現一次，不會顯得突兀</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer><div class="page">PALETTE COMPARISON · Doris Chen 個人網站 · 2026-08-19 · doris.works（規劃中）</div></footer>
+</body>
+</html>

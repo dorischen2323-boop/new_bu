@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doris Chen 個人網站 — 視覺預覽（灰粉柔紗 × 深潮藍）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   灰粉柔紗 Design Tokens
+   ============================================================ */
+:root {
+  /* 底層 */
+  --bg:            #FAF7F8;
+  --bg-alt:        #F4F0F2;
+  --surface:       #FFFFFF;
+
+  /* 文字 */
+  --ink:           #26282C;
+  --ink-2:         #6E7278;
+  --ink-3:         #9A9DA3;
+
+  /* 線 */
+  --line:          #E2DEE0;
+  --line-strong:   #CFC9CC;
+
+  /* 雙主色 */
+  --accent:        #8F4A53;   /* 深玫瑰 — 行銷側：CTA / 成果數字 */
+  --accent-hover:  #7A3D45;
+  --accent-ink:    #FFFFFF;
+  --tide:          #1B6C88;   /* 深潮藍 — 技術側：系統 / 數據 / AI */
+  --tide-hover:    #155A72;
+
+  /* 原始靈感色 */
+  --peach:         #F2C9CB;   /* 蜜桃粉 — 只做底染與漸層 */
+  --slate:         #B6BAC0;   /* 淺炭灰 — 分隔 / 標籤 / 圖表次序列 */
+  --tide-light:    #96D0D2;   /* 淺潮藍 — 技術類底染 */
+  --peach-wash:    rgba(242, 201, 203, .28);
+  --slate-wash:    rgba(182, 186, 192, .22);
+  --tide-wash:     rgba(150, 208, 210, .26);
+
+  /* 版面 */
+  --max:           1120px;
+  --measure:       680px;
+  --radius:        14px;
+  --radius-sm:     8px;
+  --shadow:        0 1px 2px rgba(38,40,44,.04), 0 8px 24px -12px rgba(38,40,44,.10);
+
+  --serif: "Noto Serif TC", "Songti TC", serif;
+  --sans:  "Noto Sans TC", system-ui, -apple-system, sans-serif;
+  --mono:  "JetBrains Mono", ui-monospace, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:          #1B1C1F;
+    --bg-alt:      #232529;
+    --surface:     #24262A;
+    --ink:         #EDEAEB;
+    --ink-2:       #A0A3A8;
+    --ink-3:       #7A7D83;
+    --line:        #33363B;
+    --line-strong: #44484E;
+    --accent:      #E8A0A8;
+    --accent-hover:#F2B8BE;
+    --accent-ink:  #1B1C1F;
+    --tide:        #7DC4DC;
+    --tide-hover:  #9BD5E8;
+    --slate:       #7E848C;
+    --peach-wash:  rgba(242, 201, 203, .12);
+    --slate-wash:  rgba(182, 186, 192, .10);
+    --tide-wash:   rgba(150, 208, 210, .12);
+    --shadow:      0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"] {
+  --bg:          #1B1C1F;
+  --bg-alt:      #232529;
+  --surface:     #24262A;
+  --ink:         #EDEAEB;
+  --ink-2:       #A0A3A8;
+  --ink-3:       #7A7D83;
+  --line:        #33363B;
+  --line-strong: #44484E;
+  --accent:      #E8A0A8;
+  --accent-hover:#F2B8BE;
+  --accent-ink:  #1B1C1F;
+  --tide:        #7DC4DC;
+  --tide-hover:  #9BD5E8;
+  --slate:       #7E848C;
+  --peach-wash:  rgba(242, 201, 203, .12);
+  --slate-wash:  rgba(182, 186, 192, .10);
+  --tide-wash:   rgba(150, 208, 210, .12);
+  --shadow:      0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: .01em;
+}
+h1,h2,h3 { font-family: var(--serif); font-weight: 700; line-height: 1.2; letter-spacing: -.02em; margin: 0; }
+p { margin: 0 0 1em; }
+a { color: var(--accent); text-decoration: none; }
+
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+.measure { max-width: var(--measure); }
+
+/* 顆粒噪點 —— 灰粉柔紗的靈魂 */
+.grain::after {
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+  opacity: .07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ============================================================
+   導覽
+   ============================================================ */
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: saturate(1.4) blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.topbar .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.brand { font-family: var(--serif); font-weight: 700; font-size: 17px; letter-spacing: 0; }
+.brand span { color: var(--accent); }
+.navlinks { display: flex; gap: 22px; font-size: 13.5px; color: var(--ink-2); }
+.navlinks a { color: inherit; }
+.navlinks a:hover { color: var(--accent); }
+@media (max-width: 720px) { .navlinks { display: none; } }
+.toggle {
+  border: 1px solid var(--line-strong); background: transparent; color: var(--ink-2);
+  font-family: var(--mono); font-size: 11px; letter-spacing: .08em;
+  padding: 6px 12px; border-radius: 999px; cursor: pointer;
+}
+.toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ============================================================
+   Hero
+   ============================================================ */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 132px 0 108px;
+  background:
+    linear-gradient(180deg, transparent 55%, var(--bg) 100%),
+    linear-gradient(135deg, var(--peach) 0%, #DFD8DE 44%, #9FB8C4 100%);
+}
+:root[data-theme="dark"] .hero,
+html:not([data-theme="light"]) .hero {
+  /* 暗色下把漸層壓暗，維持同一份柔紗感 */
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .hero {
+    background:
+      linear-gradient(180deg, transparent 50%, var(--bg) 100%),
+      linear-gradient(135deg, #5C4247 0%, #393B41 46%, #24404B 100%);
+  }
+}
+:root[data-theme="dark"] .hero {
+  background:
+    linear-gradient(180deg, transparent 50%, var(--bg) 100%),
+    linear-gradient(135deg, #5C4247 0%, #393B41 46%, #24404B 100%);
+}
+.eyebrow {
+  font-family: var(--mono); font-size: 11.5px; font-weight: 500;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--ink-2); margin-bottom: 26px;
+  display: flex; align-items: center; gap: 12px;
+}
+.eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--accent); }
+.hero h1 {
+  font-size: clamp(2.4rem, 6.2vw, 4.4rem);
+  max-width: 15em;
+  margin-bottom: 28px;
+}
+.hero .lede {
+  font-size: clamp(1rem, 1.6vw, 1.18rem);
+  color: var(--ink-2);
+  max-width: 34em;
+  margin-bottom: 40px;
+}
+.cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* ============================================================
+   按鈕
+   ============================================================ */
+.btn {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-size: 14.5px; font-weight: 500;
+  padding: 13px 26px; border-radius: 999px;
+  border: 1px solid transparent; cursor: pointer;
+  transition: background .18s ease, color .18s ease, border-color .18s ease, transform .18s ease;
+}
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+.btn-ghost { border-color: var(--line-strong); color: var(--ink); background: transparent; }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ============================================================
+   區塊
+   ============================================================ */
+section { padding: 104px 0; }
+.section-alt { background: var(--bg-alt); }
+.sec-head { margin-bottom: 52px; }
+.sec-num {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .2em;
+  color: var(--accent); display: block; margin-bottom: 14px;
+}
+.sec-head h2 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); margin-bottom: 14px; }
+.sec-head p { color: var(--ink-2); max-width: var(--measure); font-size: 15.5px; margin: 0; }
+
+/* 分隔漸層帶 —— 代替圖片的呼吸節奏 */
+.band {
+  position: relative; height: 148px; overflow: hidden;
+  background: linear-gradient(100deg, var(--peach) 0%, #DFD8DE 50%, #9FB8C4 100%);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .band { background: linear-gradient(100deg, #5C4247 0%, #393B41 50%, #24404B 100%); }
+}
+:root[data-theme="dark"] .band { background: linear-gradient(100deg, #5C4247 0%, #393B41 50%, #24404B 100%); }
+
+/* ============================================================
+   色票
+   ============================================================ */
+.swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 18px; }
+.swatch { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+.swatch .chip { height: 92px; }
+.swatch .meta { padding: 13px 15px 15px; }
+.swatch .nm { font-size: 13.5px; font-weight: 500; margin-bottom: 3px; }
+.swatch .hx { font-family: var(--mono); font-size: 11.5px; color: var(--ink-2); letter-spacing: .04em; }
+.swatch .use { font-size: 11.5px; color: var(--ink-3); margin-top: 7px; line-height: 1.5; }
+
+/* ============================================================
+   字級
+   ============================================================ */
+.type-row { display: grid; grid-template-columns: 132px 1fr; gap: 26px; padding: 26px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.type-row:last-child { border-bottom: 0; }
+.type-label { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: .08em; line-height: 1.6; }
+@media (max-width: 640px) { .type-row { grid-template-columns: 1fr; gap: 8px; } }
+
+/* ============================================================
+   數據卡
+   ============================================================ */
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(184px, 1fr)); gap: 16px; }
+.kpi {
+  background: var(--peach-wash);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px 22px 22px;
+}
+.kpi .val {
+  font-family: var(--mono); font-weight: 700;
+  font-size: clamp(1.9rem, 3.6vw, 2.5rem);
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.05; letter-spacing: -.02em;
+  display: flex; align-items: baseline; gap: 3px;
+}
+.kpi .unit { font-size: .48em; font-weight: 500; }
+.kpi .lbl { font-size: 13px; color: var(--ink-2); margin-top: 12px; line-height: 1.5; }
+.kpi .sub { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); margin-top: 6px; letter-spacing: .06em; }
+/* 技術側變體 —— 深潮藍 */
+.kpi.tech { background: var(--tide-wash); }
+.kpi.tech .val { color: var(--tide); }
+
+/* ============================================================
+   案例卡
+   ============================================================ */
+.case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 24px; }
+.case {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+.case:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(38,40,44,.05), 0 18px 40px -18px rgba(38,40,44,.22); }
+.case .thumb { position: relative; height: 168px; overflow: hidden; display: flex; align-items: flex-end; padding: 20px; }
+.case .thumb.g1 { background: linear-gradient(140deg, var(--peach) 0%, #DED5DA 60%, var(--slate) 100%); }
+.case .thumb.g2 { background: linear-gradient(140deg, var(--slate) 0%, #DCD6DA 55%, var(--peach) 100%); }
+.case .thumb.g3 { background: linear-gradient(140deg, var(--tide-light) 0%, #C3CFD8 55%, var(--tide) 100%); }
+.case .tag {
+  position: relative; z-index: 2;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase;
+  background: rgba(255,255,255,.82); color: #26282C;
+  padding: 5px 11px; border-radius: 999px;
+}
+.case .body { padding: 22px; }
+.case h3 { font-size: 1.18rem; margin-bottom: 10px; }
+.case p { font-size: 14px; color: var(--ink-2); margin-bottom: 16px; }
+.case .result {
+  display: flex; align-items: baseline; gap: 8px;
+  padding-top: 15px; border-top: 1px solid var(--line);
+}
+.case .result .n { font-family: var(--mono); font-weight: 700; font-size: 1.35rem; color: var(--accent); font-variant-numeric: tabular-nums; }
+.case .result .t { font-size: 12.5px; color: var(--ink-3); }
+.case .result.tech .n { color: var(--tide); }
+
+/* ============================================================
+   品牌牆
+   ============================================================ */
+.brandwall {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(1.05rem, 2.3vw, 1.55rem);
+  line-height: 2.1; color: var(--ink-2);
+  max-width: 920px;
+}
+.brandwall b { font-weight: 600; color: var(--ink); }
+.brandwall .sep { color: var(--slate); margin: 0 .45em; }
+
+/* ============================================================
+   時間軸
+   ============================================================ */
+.tl { border-left: 1px solid var(--line); padding-left: 30px; max-width: var(--measure); }
+.tl-item { position: relative; padding-bottom: 40px; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-item::before {
+  content: ""; position: absolute; left: -35px; top: 8px;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--bg); border: 1.5px solid var(--slate);
+}
+.tl-item.now::before { background: var(--accent); border-color: var(--accent); }
+.tl-date { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); letter-spacing: .06em; }
+.tl-role { font-family: var(--serif); font-weight: 700; font-size: 1.12rem; margin: 5px 0 3px; }
+.tl-org { font-size: 13.5px; color: var(--ink-2); }
+.tl-note { font-size: 13.5px; color: var(--ink-2); margin-top: 9px; }
+
+/* ============================================================
+   元件雜項
+   ============================================================ */
+.pill-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.pill {
+  font-size: 12.5px; padding: 6px 14px; border-radius: 999px;
+  background: var(--peach-wash); color: var(--ink-2); border: 1px solid var(--line);
+}
+.pill.tech { background: var(--tide-wash); color: var(--tide); border-color: var(--line); }
+.inline-link { border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
+.inline-link:hover { border-bottom-color: var(--accent); }
+.note {
+  border-left: 2px solid var(--accent); background: var(--peach-wash);
+  padding: 16px 20px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 14px; color: var(--ink-2); max-width: var(--measure);
+}
+.note b { color: var(--ink); }
+
+footer { border-top: 1px solid var(--line); padding: 44px 0; font-size: 13px; color: var(--ink-3); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand">Doris Chen<span>.</span></div>
+    <nav class="navlinks">
+      <a href="#hero">首頁示意</a>
+      <a href="#color">色彩</a>
+      <a href="#type">字級</a>
+      <a href="#data">數據卡</a>
+      <a href="#case">案例卡</a>
+      <a href="#tl">時間軸</a>
+    </nav>
+    <button class="toggle" id="tg">切換明暗</button>
+  </div>
+</div>
+
+<!-- ======================= HERO ======================= -->
+<div class="hero grain" id="hero">
+  <div class="wrap">
+    <div class="eyebrow">品牌成長顧問 ／ AI × 行銷</div>
+    <h1>把投放做成系統，<br>而不是每個月重來一次。</h1>
+    <p class="lede">
+      十五年數位行銷，走過代理商、品牌方、媒體三種視角。
+      現在我多做一件事 —— 把行銷流程寫成真的會跑的自動化系統。
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#">聊聊合作 →</a>
+      <a class="btn btn-ghost" href="#case">看我做過什麼</a>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= 數據證明條 ======================= -->
+<section id="data" style="padding-top:76px">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">01 / 數據卡</span>
+      <h2>成果就用儀表板的語言講</h2>
+      <p>版型是雜誌感的，但只要講到數字就切換成等寬字。這是整個設計的核心手法 —— 排版說「我有品味」，數字說「我是硬的」。</p>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="val"><span data-count="15">0</span><span class="unit">+ 年</span></div>
+        <div class="lbl">數位行銷資歷</div>
+        <div class="sub">2009 – NOW</div>
+      </div>
+      <div class="kpi">
+        <div class="val"><span data-count="10000">0</span><span class="unit">+</span></div>
+        <div class="lbl">單案潛在名單</div>
+        <div class="sub">CPA &lt; 3,000</div>
+      </div>
+      <div class="kpi">
+        <div class="val"><span data-count="35">0</span><span class="unit">%</span></div>
+        <div class="lbl">電商業績月成長</div>
+        <div class="sub">MoM 25–35%</div>
+      </div>
+      <div class="kpi tech">
+        <div class="val"><span data-count="12">0</span></div>
+        <div class="lbl">自建儀表板頁面</div>
+        <div class="sub">NEXT.JS · SUPABASE</div>
+      </div>
+      <div class="kpi tech">
+        <div class="val"><span data-count="14">0</span></div>
+        <div class="lbl">每日自動化資料管線</div>
+        <div class="sub">PYTHON · DAILY</div>
+      </div>
+      <div class="kpi">
+        <div class="val" style="font-family:var(--serif);font-size:1.5rem;line-height:1.35">金投賞<br>金獎</div>
+        <div class="lbl">搜尋行銷類</div>
+        <div class="sub">2011 · 淘寶網</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="band grain"></div>
+
+<!-- ======================= 色彩 ======================= -->
+<section id="color" class="section-alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">02 / 色彩</span>
+      <h2>灰粉柔紗 × 深潮藍</h2>
+      <p>
+        蜜桃粉 <code style="font-family:var(--mono);font-size:.9em">#F2C9CB</code> 與淺炭灰
+        <code style="font-family:var(--mono);font-size:.9em">#B6BAC0</code> 保留原色，只負責漸層與底染。
+        另外加入<b>兩個能承載文字的主色</b> —— 深玫瑰講行銷、深潮藍講技術。
+      </p>
+    </div>
+
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="chip" style="background:#F2C9CB"></div>
+        <div class="meta"><div class="nm">蜜桃粉</div><div class="hx">#F2C9CB</div>
+        <div class="use">背景漸層、數據卡底染。永不承載文字。</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#B6BAC0"></div>
+        <div class="meta"><div class="nm">淺炭灰</div><div class="hx">#B6BAC0</div>
+        <div class="use">分隔線、標籤底、圖表次要序列。</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#8F4A53"></div>
+        <div class="meta"><div class="nm">深玫瑰 ★ 行銷側</div><div class="hx">#8F4A53</div>
+        <div class="use">CTA、連結、成果數字。白字對比 6.2 ✓</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#1B6C88"></div>
+        <div class="meta"><div class="nm">深潮藍 ★ 技術側</div><div class="hx">#1B6C88</div>
+        <div class="use">系統／數據／AI 相關的標籤與數字。對比 5.67 ✓</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#96D0D2"></div>
+        <div class="meta"><div class="nm">淺潮藍</div><div class="hx">#96D0D2</div>
+        <div class="use">技術類數據卡底染、圖表淺序列。不承載文字。</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#26282C"></div>
+        <div class="meta"><div class="nm">墨炭灰</div><div class="hx">#26282C</div>
+        <div class="use">主文字。與淺炭灰同色相加深，整體才和諧。</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#6E7278"></div>
+        <div class="meta"><div class="nm">次要文字</div><div class="hx">#6E7278</div>
+        <div class="use">內文說明、圖說。</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#FAF7F8;border-bottom:1px solid #E2DEE0"></div>
+        <div class="meta"><div class="nm">粉灰白（底）</div><div class="hx">#FAF7F8</div>
+        <div class="use">頁面底色。刻意不用純白。</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#F4F0F2;border-bottom:1px solid #E2DEE0"></div>
+        <div class="meta"><div class="nm">區塊底（交替）</div><div class="hx">#F4F0F2</div>
+        <div class="use">相鄰區塊交替使用，拉出層次。</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:linear-gradient(135deg,#F2C9CB 0%,#DFD8DE 44%,#9FB8C4 100%)"></div>
+        <div class="meta"><div class="nm">柔紗漸層</div><div class="hx">135° peach → #9FB8C4</div>
+        <div class="use">Hero、分隔帶。右端帶藍，讓潮藍在首屏先露臉一次。</div></div>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:34px">
+      <b>為什麼要壓深？</b><br>
+      蜜桃粉在白底對比只有 1.3:1、原始 Pool Bottom <code style="font-family:var(--mono);font-size:.9em">#227E9D</code> 是 4.43:1（小字踩線），
+      兩者都不能直接當文字或按鈕。深玫瑰與深潮藍都是「色相保留、明度壓下」的結果 ——
+      看起來仍是同一家人，但對比分別是 6.2:1 與 5.67:1，全數通過 WCAG AA。
+    </div>
+    <div class="note" style="margin-top:16px;border-left-color:#1B6C88;background:var(--tide-wash)">
+      <b>為什麼要兩個主色？</b><br>
+      一個顏色講不完「行銷操盤手 ＋ 會寫系統的人」。
+      <b>粉 = 成果／業績／人</b>，<b>藍 = 系統／數據／AI</b> —— 顏色本身就在幫你分工，
+      而且圖表終於畫得出多序列、技能標籤終於分得出類別。
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 字級 ======================= -->
+<section id="type">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">03 / 字體</span>
+      <h2>思源宋體 × 思源黑體 × 等寬數字</h2>
+      <p>標題走宋體撐氣場，內文走黑體保可讀性，數字一律等寬並開 tabular-nums 讓欄位對齊。</p>
+    </div>
+
+    <div class="type-row">
+      <div class="type-label">H1 · 宋體 700<br>clamp 2.4–4.4rem</div>
+      <div style="font-family:var(--serif);font-weight:700;font-size:clamp(2rem,4.5vw,3.2rem);line-height:1.18;letter-spacing:-.02em">把投放做成系統</div>
+    </div>
+    <div class="type-row">
+      <div class="type-label">H2 · 宋體 700<br>1.7–2.5rem</div>
+      <div style="font-family:var(--serif);font-weight:700;font-size:2rem;line-height:1.25">代理商 × 品牌方 × 媒體</div>
+    </div>
+    <div class="type-row">
+      <div class="type-label">H3 · 宋體 700<br>1.18rem</div>
+      <div style="font-family:var(--serif);font-weight:700;font-size:1.18rem">某汽車品牌｜潛客名單成本優化</div>
+    </div>
+    <div class="type-row">
+      <div class="type-label">內文 · 黑體 400<br>16px / 1.75</div>
+      <div class="measure" style="color:var(--ink-2)">歷經代理商、品牌方、媒體三種角色，累積完整的數位行銷 Know-how，包含品牌策略、數據分析、媒體採買、活動企劃與社群經營。一行控制在 30–36 個中文字，是繁體中文閱讀最舒服的長度。</div>
+    </div>
+    <div class="type-row">
+      <div class="type-label">數字 · 等寬 700<br>tabular-nums</div>
+      <div style="font-family:var(--mono);font-weight:700;font-size:2.2rem;font-variant-numeric:tabular-nums;letter-spacing:-.02em">
+        <span style="color:var(--accent)">10,000+ ／ 25–35%</span>
+        <span style="color:var(--ink-3);font-weight:400"> ／ </span>
+        <span style="color:var(--tide)">12 頁 ／ 14 管線</span>
+      </div>
+    </div>
+    <div class="type-row">
+      <div class="type-label">標籤 · 等寬 500<br>11px / .2em</div>
+      <div style="font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)">GROWTH HACKER · MARKETING AUTOMATION · 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 案例卡 ======================= -->
+<section id="case" class="section-alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">04 / 案例卡</span>
+      <h2>沒有照片也撐得起來</h2>
+      <p>縮圖用柔紗漸層 + 顆粒，之後換成你脫敏過的 Dashboard 截圖或數據圖表就好。品牌名一律類別化，數字全留。</p>
+    </div>
+
+    <div class="case-grid">
+      <div class="case">
+        <div class="thumb g1 grain"><span class="tag">潛客名單</span></div>
+        <div class="body">
+          <h3>某汽車品牌｜名單成本優化</h3>
+          <p>預算不變的前提下，重構受眾分層與素材輪替節奏，把獲客成本壓進目標線內。</p>
+          <div class="result"><span class="n">10,000+</span><span class="t">潛在名單 · CPA &lt; 3,000</span></div>
+        </div>
+      </div>
+      <div class="case">
+        <div class="thumb g2 grain"><span class="tag">電商成長</span></div>
+        <div class="body">
+          <h3>某有機飲品｜自有電商從零起盤</h3>
+          <p>從品牌定位、官網企劃到會員經營一手包辦，並開拓 momo 通路作為第二成長曲線。</p>
+          <div class="result"><span class="n">25–35%</span><span class="t">業績月成長 MoM</span></div>
+        </div>
+      </div>
+      <div class="case">
+        <div class="thumb g3 grain"><span class="tag">AI 工作流</span></div>
+        <div class="body">
+          <h3>行銷數據自動化後台</h3>
+          <p>把散落在 Sheet、廣告後台、社群平台的數據收攏成一頁儀表板，每日自動更新。</p>
+          <div class="result tech"><span class="n">12</span><span class="t">儀表板頁面 · 每日自動化</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 品牌牆 ======================= -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">05 / 品牌牆</span>
+      <h2>服務過的品牌</h2>
+      <p>你說不放 logo —— 正好。宋體排的文字牆比一堆大小不一的 logo 更有格調，而且不會有授權問題。</p>
+    </div>
+    <div class="brandwall">
+      <b>MG 汽車</b><span class="sep">·</span><b>日立冷氣</b><span class="sep">·</span><b>客委會</b><span class="sep">·</span><b>和泰汽車</b><span class="sep">·</span><b>光泉</b><span class="sep">·</span><b>SONY 影業</b><span class="sep">·</span><b>中華汽車</b><span class="sep">·</span><b>統一</b><span class="sep">·</span><b>淘寶網</b><span class="sep">·</span><b>天貓</b><span class="sep">·</span><b>遠傳</b><span class="sep">·</span><b>大同電子</b><span class="sep">·</span><b>梅花錶</b><span class="sep">·</span><b>時間寵愛</b><span class="sep">·</span><b>悠美醫美</b>
+    </div>
+    <div class="pill-row" style="margin-top:38px">
+      <span class="pill">品牌成長策略</span>
+      <span class="pill">成效型廣告優化</span>
+      <span class="pill">電商營運</span>
+      <span class="pill">社群經營</span>
+      <span class="pill">數據分析</span>
+      <span class="pill">企業內訓</span>
+      <span class="pill tech">AI 工作流開發</span>
+      <span class="pill tech">行銷數據自動化</span>
+      <span class="pill tech">儀表板開發</span>
+    </div>
+  </div>
+</section>
+
+<div class="band grain"></div>
+
+<!-- ======================= 時間軸 ======================= -->
+<section id="tl" class="section-alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">06 / 時間軸</span>
+      <h2>經歷</h2>
+      <p>首頁只放摘要，完整版在 /resume。最新的一段放最前面，並用主色標記「現在」。</p>
+    </div>
+    <div class="tl">
+      <div class="tl-item now">
+        <div class="tl-date">2025.06 — 現在</div>
+        <div class="tl-role">成長駭客 ／ 行銷經理</div>
+        <div class="tl-org">水球軟體學院</div>
+        <div class="tl-note">行銷成長操盤，並主導 AI 工作流開發 —— 自建行銷數據後台、每日銷售自動化報表、名單磁鐵與客服流程自動化。<span style="color:var(--accent)">（成績數字待補）</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2023.02 — 2025.05</div>
+        <div class="tl-role">媒體企劃經理</div>
+        <div class="tl-org">博報堂集團</div>
+        <div class="tl-note">各品牌客戶數位廣告規劃與效能優化，以數據制定投放策略。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2021.08 — 2022.08</div>
+        <div class="tl-role">資深行銷企劃</div>
+        <div class="tl-org">揚臻國際</div>
+        <div class="tl-note">新電商網站與品牌行銷規劃，涵蓋品牌策略、公關、會員經營與異業合作。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2020.07 — 2021.02</div>
+        <div class="tl-role">專案經理</div>
+        <div class="tl-org">寵聚股份有限公司</div>
+        <div class="tl-note">寵物健康資訊平台營運、OMO 整合，並一手成立 Podcast 節目。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2018.09 — 2020.04</div>
+        <div class="tl-role">數位企劃處 經理</div>
+        <div class="tl-org">ETtoday 新聞雲</div>
+        <div class="tl-note">整合新聞平台自有資源進行媒合行銷，管理自家節目產品與專案。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2014.08 — 2018.05</div>
+        <div class="tl-role">行銷公關部主管</div>
+        <div class="tl-org">英奇達資訊</div>
+        <div class="tl-note">帶領 10 人團隊營運口碑行銷與電商服務平台，半年招募 10 萬名會員。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2009.12 — 2012.08</div>
+        <div class="tl-role">數位行銷策略經理</div>
+        <div class="tl-org">關鍵數位行銷</div>
+        <div class="tl-note">為淘寶網打造 2011 金投賞搜尋行銷金獎專案。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 元件 ======================= -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">07 / 元件</span>
+      <h2>按鈕與連結</h2>
+    </div>
+    <div class="cta-row" style="margin-bottom:30px">
+      <a class="btn btn-primary" href="#">主要按鈕</a>
+      <a class="btn btn-ghost" href="#">次要按鈕</a>
+    </div>
+    <p class="measure" style="color:var(--ink-2)">
+      內文中的連結長這樣 —— <a class="inline-link" href="#">歡迎聊聊合作</a> —— 只用底線，不改字重，滑過時底線加深。
+      整站只有兩個「會說話」的彩色 —— 深玫瑰（行銷）與深潮藍（技術），其餘全灰階。這是質感的關鍵。
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    視覺預覽 · 灰粉柔紗 × 深潮藍 · Editorial × Data ｜ 2026-08-19 ｜ doris.works（規劃中）
+  </div>
+</footer>
+
+<script>
+// 明暗切換
+const root = document.documentElement, tg = document.getElementById('tg');
+tg.addEventListener('click', () => {
+  const cur = root.getAttribute('data-theme');
+  const sysDark = matchMedia('(prefers-color-scheme: dark)').matches;
+  const now = cur || (sysDark ? 'dark' : 'light');
+  root.setAttribute('data-theme', now === 'dark' ? 'light' : 'dark');
+});
+
+// 數字 count-up（只跑一次）
+const fmt = n => n.toLocaleString('en-US');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target, target = +el.dataset.count, dur = 900, t0 = performance.now();
+    const step = (t) => {
+      const p = Math.min((t - t0) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(Math.round(target * eased));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+    io.unobserve(el);
+  });
+}, { threshold: .6 });
+document.querySelectorAll('[data-count]').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
